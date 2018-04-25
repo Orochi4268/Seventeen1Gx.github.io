@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法题,模拟," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目描述有一个标准的12小时时钟，它有一个时针，一个分针。现问你，在给定的两个时刻之间分针与时针相遇几次？">
+<meta name="keywords" content="算法题,模拟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1031 时钟">
+<meta property="og:url" content="http://yoursite.com/2018/04/25/1031-时钟/index.html">
+<meta property="og:site_name" content="Seventeen&#39;s Blog">
+<meta property="og:description" content="题目描述有一个标准的12小时时钟，它有一个时针，一个分针。现问你，在给定的两个时刻之间分针与时针相遇几次？">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-25T14:49:35.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1031 时钟">
+<meta name="twitter:description" content="题目描述有一个标准的12小时时钟，它有一个时针，一个分针。现问你，在给定的两个时刻之间分针与时针相遇几次？">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/25/1031-时钟/"/>
+
+
+
+
+
+  <title>1031 时钟 | Seventeen's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seventeen's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            档案馆
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/1031-时钟/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seventeen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seventeen's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">1031 时钟</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T21:18:38+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CodeUp-cn编程题详解/" itemprop="url" rel="index">
+                    <span itemprop="name">CodeUp.cn编程题详解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有一个标准的12小时时钟，它有一个时针，一个分针。现问你，在给定的两个时刻之间分针与时针相遇几次？</p>
+<a id="more"></a>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入包含多组测试数据。每组输入包含4个整数，前两个数字分别表示起始时刻的小时和分，后两个数字分别表示结束时刻的小时和分。<br>小时数在[1，12]内，分钟数在[0，59]内。<br>注意：<br>1）输入中的起始和结束时刻均不会出现时针和分针恰好相遇的情况，例如12点0分。<br>2）输入中不会出现起始时刻和结束时刻相同的情况。<br>3）在时针从起始时刻到结束时刻运转的过程中，时针转过的角度一定小于360度。<br>4）在时针从起始时刻到结束时刻运转的过程中，时针有可能越过表盘上12点钟的刻度。如果越过了，说明起始时刻和结束时刻中一个是A.M.，一个是P.M.。如果没越过，说明起始时刻和结束时刻都是A.M.或都是P.M.。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出的第一行为“Initial time  Final time  Passes”，具体的输出格式请参照输出样例。可用鼠标选中来看出空格数等细节。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">12 50  1  2</span><br><span class="line"> 3  8  3 20</span><br><span class="line"> 2 45 11  0</span><br><span class="line">11  0  3 20</span><br><span class="line"> 1  2 12 50</span><br><span class="line"> 3 20  3  8</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Initial time  Final time  Passes</span><br><span class="line">       12:50       01:02       0</span><br><span class="line">       03:08       03:20       1</span><br><span class="line">       02:45       11:00       8</span><br><span class="line">       11:00       03:20       4</span><br><span class="line">       01:02       12:50      11</span><br><span class="line">       03:20       03:08      10</span><br></pre></td></tr></table></figure>
+<h1 id="思路与代码"><a href="#思路与代码" class="headerlink" title="思路与代码"></a>思路与代码</h1><p>时针分针相遇问题实际为追及相遇问题，可用下面这个较容易的题目找感觉。</p>
+<p>问：开始时时针分针重合在12点整，到下一次再重合至12点整，即过12个小时之后，这之间时针和分针在哪些时刻相遇？</p>
+<p>分析：时针速度为0.5度/分（v1），分针速度为6度/分（v2），从同一起点出发，过了t分钟，两针再相遇，有方程：<code>v2 * t - v1 * t = 360</code>，所以<code>t = 360 / (v2 - v1)</code> ，是一个常量值。（这里精确到分钟）</p>
+<p>代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> hh = <span class="number">0</span>, mm = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">double</span> v1 = <span class="number">0.5</span>;</span><br><span class="line">	<span class="keyword">double</span> v2 = <span class="number">6</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> t;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"精确到分钟的相遇情况：\n"</span>);</span><br><span class="line">	t = <span class="number">360</span> / (v2 - v1);	<span class="comment">//从重合到追及所用时间为分针比时针多走的360°除以二者速度差</span></span><br><span class="line">	<span class="keyword">while</span> ( hh &lt; <span class="number">12</span>) &#123; </span><br><span class="line">		t += mm;			<span class="comment">//距离 hh：00 总共过了t分钟 </span></span><br><span class="line">		hh = hh + t/<span class="number">60</span>;</span><br><span class="line">		mm = t % <span class="number">60</span>;</span><br><span class="line">		<span class="keyword">if</span> (hh &gt; <span class="number">12</span>)</span><br><span class="line">			<span class="keyword">break</span>; </span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"第%d次相遇是：%02d:%02d\n"</span>, i++, hh, mm);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本题比该题更难，主要体现在：</p>
+<ol>
+<li>起始时分针与时针并不重合</li>
+<li>起始时间到终点时间有越过12点的情况</li>
+<li>问的是相遇的次数</li>
+</ol>
+<p>针对难点1，可将运动过程分为<strong>起始-第一次相遇-最后一次相遇-结束</strong>。</p>
+<p>针对难点2，可将小时数换算成[0,11]，可让时刻二的小时数加12，然后统一换成距离0点0分的分钟数，最后计算相差分钟数。</p>
+<p>针对难点3，一个时间段一个时间段的进行，起始time1，一段一段地去靠近结束time2。</p>
+<p>具体处理见详细代码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> h1, m1, h2, m2;		<span class="comment">//时刻 h1:m1 与 h2:m2 </span></span><br><span class="line">	<span class="keyword">int</span> cnt;				<span class="comment">//记录相遇次数 </span></span><br><span class="line">	<span class="keyword">double</span> time1, time2, t;</span><br><span class="line">	<span class="keyword">double</span> hp, mp;			<span class="comment">//时针和分针距离0点0分走过的度数 </span></span><br><span class="line">	<span class="keyword">int</span> t1, t2, t3, t4;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Initial time  Final time  Passes\n"</span>);</span><br><span class="line">	<span class="keyword">while</span> ( <span class="built_in">scanf</span>(<span class="string">"%d %d %d %d"</span>, &amp;h1, &amp;m1, &amp;h2, &amp;m2) != EOF ) &#123;</span><br><span class="line">		<span class="comment">//保存初始值，输出结果要用 </span></span><br><span class="line">		t1 = h1;</span><br><span class="line">		t2 = m1;</span><br><span class="line">		t3 = h2;</span><br><span class="line">		t4 = m2;</span><br><span class="line">		cnt = <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//12点看成0点，便于计算 </span></span><br><span class="line">		<span class="keyword">if</span> ( h1==<span class="number">12</span> )</span><br><span class="line">			h1 = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> ( h2==<span class="number">12</span> )</span><br><span class="line">			h2 = <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//越过12点的情况</span></span><br><span class="line">		<span class="keyword">if</span> ( h1&gt;h2 || h1==h2 &amp;&amp; m1&gt;m2)		 </span><br><span class="line">			h2 +=<span class="number">12</span>;</span><br><span class="line">			</span><br><span class="line">		<span class="comment">//统一换成距离0点0分的分钟数 </span></span><br><span class="line">		time1 = h1*<span class="number">60</span> + m1;				 </span><br><span class="line">		time2 = h2*<span class="number">60</span> + m2;</span><br><span class="line">		</span><br><span class="line">		hp = time1 * <span class="number">0.5</span>;				<span class="comment">//起始时时针走过角度	 </span></span><br><span class="line">		mp = m1 * <span class="number">6</span>;					<span class="comment">//起始时分针走过角度 </span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//从开始到第一次相遇，最好画图 </span></span><br><span class="line">		<span class="keyword">if</span>( hp&gt;mp )						<span class="comment">//时针在分针前面，追赶的距离hp-mp </span></span><br><span class="line">			t = (hp-mp) / <span class="number">5.5</span>;</span><br><span class="line">		<span class="keyword">else</span>							<span class="comment">//分针在时针前面，追赶的距离多转一圈 </span></span><br><span class="line">			t = (<span class="number">360</span> - (mp-hp)) / <span class="number">5.5</span>;</span><br><span class="line">		</span><br><span class="line">		time1 += t;						<span class="comment">//time1到达两针第一次重合的时间 </span></span><br><span class="line">		</span><br><span class="line">		t = <span class="number">360</span> / <span class="number">5.5</span>;					<span class="comment">//每过t时间相遇一次 </span></span><br><span class="line">		<span class="keyword">while</span> ( time1&lt;time2 ) &#123;			<span class="comment">//未追到就一直循环</span></span><br><span class="line">			cnt++;</span><br><span class="line">			time1 += t;					<span class="comment">//time1到下一次相遇的时刻 </span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"       %02d:%02d       %02d:%02d  %6d\n"</span>, t1, t2, t3, t4, cnt);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>代码文件下载请戳<a href="https://github.com/Seventeen1Gx/CodeUp/tree/master/1008-1033%20%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%8B%9F" target="_blank" rel="noopener">这里</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法题/" rel="tag"># 算法题</a>
+          
+            <a href="/tags/模拟/" rel="tag"># 模拟</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Seventeen" />
+            
+              <p class="site-author-name" itemprop="name">Seventeen</p>
+              <p class="site-description motion-element" itemprop="description">From Zero to Hero</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Seventeen1Gx" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:seventeen1gx@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入"><span class="nav-number">2.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出"><span class="nav-number">3.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输入"><span class="nav-number">4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输出"><span class="nav-number">5.</span> <span class="nav-text">样例输出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路与代码"><span class="nav-number"></span> <span class="nav-text">思路与代码</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Seventeen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"bottom":-10,"display":{"position":"right","width":100,"height":200},"mobile":{"show":false},"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</html>
