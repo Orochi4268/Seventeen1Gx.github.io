@@ -95,18 +95,27 @@
 
 
 
-<meta name="description" content="写在前面本笔记为中国大学MOOC上的课程数据库系统（上）：模型与语言听课过程中所写下的一些笔记，由于本人初次学习数据库的知识，水平有限，所写笔记也基本是老师讲解课件上的一些摘抄整理，若出现错误和遗漏，还请见谅。后期若有时间，笔记内容也会重新整理和修改。">
+<meta name="description" content="写在前面本笔记为中国大学MOOC上的课程数据库系统（上）：模型与语言听课过程中所写下的一些笔记，由于本人初次学习数据库的知识，水平有限，所写笔记也基本是老师讲解课件上的一些摘抄整理，若出现错误和遗漏，还请见谅。后期若有时间，笔记内容也会重新整理和修改。 本文多图预警！">
 <meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《数据库系统》听课笔记 第一讲 初识数据库系统">
 <meta property="og:url" content="http://yoursite.com/2018/04/26/《数据库系统》听课笔记-第一讲-初识数据库系统/index.html">
 <meta property="og:site_name" content="Seventeen&#39;s Blog">
-<meta property="og:description" content="写在前面本笔记为中国大学MOOC上的课程数据库系统（上）：模型与语言听课过程中所写下的一些笔记，由于本人初次学习数据库的知识，水平有限，所写笔记也基本是老师讲解课件上的一些摘抄整理，若出现错误和遗漏，还请见谅。后期若有时间，笔记内容也会重新整理和修改。">
+<meta property="og:description" content="写在前面本笔记为中国大学MOOC上的课程数据库系统（上）：模型与语言听课过程中所写下的一些笔记，由于本人初次学习数据库的知识，水平有限，所写笔记也基本是老师讲解课件上的一些摘抄整理，若出现错误和遗漏，还请见谅。后期若有时间，笔记内容也会重新整理和修改。 本文多图预警！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-26T12:57:22.511Z">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/1.%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/2.%E8%AF%BE%E7%A8%8B%E5%85%B3%E7%B3%BB.png">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/3.%E8%A1%A8%E7%9A%84%E8%A6%81%E7%B4%A0.png">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/4.%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/5.%E5%AE%9E%E7%8E%B0%E8%A7%92%E5%BA%A6%E7%9C%8BDBMS%20%E2%85%A0.png">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/5.%E5%AE%9E%E7%8E%B0%E8%A7%92%E5%BA%A6%E7%9C%8BDBMS%20%E2%85%A1.png">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/6.%E5%8A%9F%E8%83%BD%E5%B0%8F%E7%BB%93.png">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/7.%E6%9C%AC%E8%AE%B2%E5%9B%9E%E9%A1%BE.png">
+<meta property="og:updated_time" content="2018-04-26T13:29:10.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据库系统》听课笔记 第一讲 初识数据库系统">
-<meta name="twitter:description" content="写在前面本笔记为中国大学MOOC上的课程数据库系统（上）：模型与语言听课过程中所写下的一些笔记，由于本人初次学习数据库的知识，水平有限，所写笔记也基本是老师讲解课件上的一些摘抄整理，若出现错误和遗漏，还请见谅。后期若有时间，笔记内容也会重新整理和修改。">
+<meta name="twitter:description" content="写在前面本笔记为中国大学MOOC上的课程数据库系统（上）：模型与语言听课过程中所写下的一些笔记，由于本人初次学习数据库的知识，水平有限，所写笔记也基本是老师讲解课件上的一些摘抄整理，若出现错误和遗漏，还请见谅。后期若有时间，笔记内容也会重新整理和修改。 本文多图预警！">
+<meta name="twitter:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/1.%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84.png">
 
 
 
@@ -369,8 +378,34 @@
 
       
         <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本笔记为<a href="http://www.icourse163.org/" target="_blank" rel="noopener">中国大学MOOC</a>上的课程<a href="http://www.icourse163.org/course/HIT-1001516002" target="_blank" rel="noopener">数据库系统（上）：模型与语言</a>听课过程中所写下的一些笔记，由于本人初次学习数据库的知识，水平有限，所写笔记也基本是老师讲解课件上的一些摘抄整理，若出现错误和遗漏，还请见谅。后期若有时间，笔记内容也会重新整理和修改。</p>
+<p>本文多图预警！</p>
 <a id="more"></a>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><ol>
+<li>课程地位：信息管理的核心。</li>
+<li>数据库系统的结构 <img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/1.%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84.png" alt=""></li>
+<li>与其他计算机课程之间的关系<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/2.%E8%AF%BE%E7%A8%8B%E5%85%B3%E7%B3%BB.png" alt=""></li>
+<li>课程提点与教材阅读要求：抽象、数据库思维、应用——数据库语言、管理、案例。</li>
+<li>基于数据库的应用——大数据：①只求关系不求因果；②部分数据集上的分析，到全部数据集上的分析；③不要相信经验，一切以数据说话。</li>
+<li>数据库：数据有相互关联关系的Table的集合。计算机需要对这些数据快速有效地存储、检索、统计与管理。</li>
+<li>数据库起源于对规范化“表（Table）”的处理。Table：以按行按列形式组织及展现的数据。</li>
+<li>E.F.Codd：①提出“关系”及关系模型；②提出关系数据库理论；③开创数据库的时代；④当今普遍应用的数据库管理系统的奠基者。</li>
+<li>“表”的要素<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/3.%E8%A1%A8%E7%9A%84%E8%A6%81%E7%B4%A0.png" alt=""></li>
+<li>数据库系统（工作环境）：数据库DB，数据库管理系统DBMS，数据库应用DBAP，数据库管理员DBA，计算机基本系统。</li>
+</ol>
+<p>实例：图书管理数据库系统。<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/4.%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" alt=""></p>
+<ol start="11">
+<li>用户角度（管理员）看数据库管理系统的功能：①数据库定义功能，提供数据定义语言DDL，比如建表，名字结构格式；②数据库操纵功能，即增删改查，提供数据操纵语言DML；③数据库控制功能，提供数据控制语言，比如访问权限设定。④数据库维护功能，提供一系列程序，比如转储。</li>
+<li>数据库语言：使用者通过数据库语言利用DBMS操作数据库。</li>
+</ol>
+<p>DDL、DML和DCL组合形成SQL语言，结构化的数据库语言。</p>
+<ol start="13">
+<li>数据库语言与高级语言关系：①一条数据库语言相当于高级语言的一个或多个循环程序。②数据库语言可以嵌入高级语言（宿主语言）中使用。</li>
+<li>系统实现角度看DBMS的功能：①（形式→构造→自动化）DBMS是解析语言并执行的系统；②DBMS为了完成DB管理，在后台运行着一系列的程序，如语言编译器，查询优化（执行引擎），查询实现（基本命令的不同执行算法），数据存取与索引，事务管理，故障恢复，安全性控制，完整性控制，数据字典管理，API，等等。<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/5.%E5%AE%9E%E7%8E%B0%E8%A7%92%E5%BA%A6%E7%9C%8BDBMS%20%E2%85%A0.png" alt=""><img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/5.%E5%AE%9E%E7%8E%B0%E8%A7%92%E5%BA%A6%E7%9C%8BDBMS%20%E2%85%A1.png" alt=""></li>
+<li>DBMS功能小结<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/6.%E5%8A%9F%E8%83%BD%E5%B0%8F%E7%BB%93.png" alt=""></li>
+<li>典型的数据库管理系统（DBMS）：Oracle，DB 2（IBM），Sybase，MS SQL Server，MS Access，MS Foxpro等。</li>
+<li>本讲回顾<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/7.%E6%9C%AC%E8%AE%B2%E5%9B%9E%E9%A1%BE.png" alt=""></li>
+</ol>
+
       
     </div>
     
