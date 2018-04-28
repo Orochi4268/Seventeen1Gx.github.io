@@ -98,24 +98,21 @@
 <meta name="description" content="写在前面本笔记为中国大学MOOC上的课程数据库系统（上）：模型与语言听课过程中所写下的一些笔记，由于本人初次学习数据库的知识，水平有限，所写笔记也基本是老师讲解课件上的一些摘抄整理，若出现错误和遗漏，还请见谅。后期若有时间，笔记内容也会重新整理和修改。 本文多图预警！">
 <meta name="keywords" content="数据库入门">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《数据库系统》听课笔记 第一讲 初识数据库系统">
-<meta property="og:url" content="http://yoursite.com/2018/04/26/《数据库系统》听课笔记-第一讲-初识数据库系统/index.html">
+<meta property="og:title" content="《数据库系统》听课笔记 第三讲 关系模型之基本概念">
+<meta property="og:url" content="http://yoursite.com/2018/04/27/《数据库系统》听课笔记-第三讲-关系模型之基本概念/index.html">
 <meta property="og:site_name" content="Seventeen&#39;s Blog">
 <meta property="og:description" content="写在前面本笔记为中国大学MOOC上的课程数据库系统（上）：模型与语言听课过程中所写下的一些笔记，由于本人初次学习数据库的知识，水平有限，所写笔记也基本是老师讲解课件上的一些摘抄整理，若出现错误和遗漏，还请见谅。后期若有时间，笔记内容也会重新整理和修改。 本文多图预警！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/1.%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84.png">
-<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/2.%E8%AF%BE%E7%A8%8B%E5%85%B3%E7%B3%BB.png">
-<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/3.%E8%A1%A8%E7%9A%84%E8%A6%81%E7%B4%A0.png">
-<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/4.%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
-<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/5.%E5%AE%9E%E7%8E%B0%E8%A7%92%E5%BA%A6%E7%9C%8BDBMS%20%E2%85%A0.png">
-<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/5.%E5%AE%9E%E7%8E%B0%E8%A7%92%E5%BA%A6%E7%9C%8BDBMS%20%E2%85%A1.png">
-<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/6.%E5%8A%9F%E8%83%BD%E5%B0%8F%E7%BB%93.png">
-<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/7.%E6%9C%AC%E8%AE%B2%E5%9B%9E%E9%A1%BE.png">
-<meta property="og:updated_time" content="2018-04-27T01:46:01.095Z">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/1.%E5%BC%80%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%B8%80%E7%A7%8D%E6%80%9D%E7%BB%B4.png">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/2.%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF.png">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/3.%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/4.%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA.png">
+<meta property="og:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/5.%E6%9C%AC%E8%AE%B2%E5%9B%9E%E9%A1%BE.png">
+<meta property="og:updated_time" content="2018-04-28T07:54:11.487Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《数据库系统》听课笔记 第一讲 初识数据库系统">
+<meta name="twitter:title" content="《数据库系统》听课笔记 第三讲 关系模型之基本概念">
 <meta name="twitter:description" content="写在前面本笔记为中国大学MOOC上的课程数据库系统（上）：模型与语言听课过程中所写下的一些笔记，由于本人初次学习数据库的知识，水平有限，所写笔记也基本是老师讲解课件上的一些摘抄整理，若出现错误和遗漏，还请见谅。后期若有时间，笔记内容也会重新整理和修改。 本文多图预警！">
-<meta name="twitter:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/1.%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84.png">
+<meta name="twitter:image" content="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/1.%E5%BC%80%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%B8%80%E7%A7%8D%E6%80%9D%E7%BB%B4.png">
 
 
 
@@ -145,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/26/《数据库系统》听课笔记-第一讲-初识数据库系统/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/27/《数据库系统》听课笔记-第三讲-关系模型之基本概念/"/>
 
 
 
 
 
-  <title>《数据库系统》听课笔记 第一讲 初识数据库系统 | Seventeen's Blog</title>
+  <title>《数据库系统》听课笔记 第三讲 关系模型之基本概念 | Seventeen's Blog</title>
   
 
 
@@ -288,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/《数据库系统》听课笔记-第一讲-初识数据库系统/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/《数据库系统》听课笔记-第三讲-关系模型之基本概念/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Seventeen">
@@ -305,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《数据库系统》听课笔记 第一讲 初识数据库系统</h1>
+          <h1 class="post-title" itemprop="name headline">《数据库系统》听课笔记 第三讲 关系模型之基本概念</h1>
         
 
         <div class="post-meta">
@@ -317,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-26T20:30:09+08:00">
-                2018-04-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T19:22:22+08:00">
+                2018-04-27
               </time>
             
 
@@ -381,32 +378,60 @@
 <p>本文多图预警！</p>
 <a id="more"></a>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><ol>
-<li>课程地位：信息管理的核心。</li>
-<li>数据库系统的结构 <img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/1.%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84.png" alt=""></li>
-<li>与其他计算机课程之间的关系<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/2.%E8%AF%BE%E7%A8%8B%E5%85%B3%E7%B3%BB.png" alt=""></li>
-<li>课程提点与教材阅读要求：抽象、数据库思维、应用——数据库语言、管理、案例。</li>
-<li>基于数据库的应用——大数据：①只求关系不求因果；②部分数据集上的分析，到全部数据集上的分析；③不要相信经验，一切以数据说话。</li>
-<li>数据库：数据有相互关联关系的Table的集合。计算机需要对这些数据快速有效地存储、检索、统计与管理。</li>
-<li>数据库起源于对规范化“表（Table）”的处理。Table：以按行按列形式组织及展现的数据。</li>
-<li>E.F.Codd：①提出“关系”及关系模型；②提出关系数据库理论；③开创数据库的时代；④当今普遍应用的数据库管理系统的奠基者。</li>
-<li>“表”的要素<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/3.%E8%A1%A8%E7%9A%84%E8%A6%81%E7%B4%A0.png" alt=""></li>
-<li>数据库系统（工作环境）：数据库DB，数据库管理系统DBMS，数据库应用DBAP，数据库管理员DBA，计算机/网络基本系统。</li>
-</ol>
-<p>实例：图书管理数据库系统。<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/4.%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" alt=""></p>
-<ol start="11">
-<li><p>用户角度（管理员）看数据库管理系统的功能：①数据库定义功能，提供数据定义语言DDL，比如建表，名字结构格式；②数据库操纵功能，即增删改查，提供数据操纵语言DML；③数据库控制功能，提供数据控制语言DCL，比如访问权限设定。④数据库维护功能，提供一系列程序，比如转储。</p>
-<p>一句话来说，<strong>数据库管理系统就是通过数据库语言让用户操作进而提供数据库定义、数据库操纵和数据库控制功能的系统，同时提供了一系列程序能够实现对数据库的各种存储与维护。</strong></p>
+<li><p>关系模型是从表（Table）及表的处理方式中抽象出来的，是在对传统表及其操作进行数学化严格定义的基础上，引入<strong>集合理论</strong>与<strong>逻辑学理论</strong>提出。<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/1.%E5%BC%80%E5%8F%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%B8%80%E7%A7%8D%E6%80%9D%E7%BB%B4.png" alt=""></p>
 </li>
-<li><p>数据库语言：使用者通过数据库语言利用DBMS操作数据库。</p>
+<li><p>一个关系（relation）就是一个Table，关系模型就是处理Table的，它由三部分组成：①描述DB各种数据的基本结构形式（Table/Relation）；②描述Table与Table之间所可能发生的各种操作（关系运算）；③描述这些操作所应遵循的约束条件（完成性约束）。</p>
+<p>就是要学习：Table如何描述，有哪些操作，结果是什么，有哪些约束等。</p>
+</li>
+<li><p>三个要素：①基本结构：Relation/Table；②基本操作：并，差，广义积，选择，投影，交，连接，除；③完整性约束：实体完整性、参照完整性和用户自定义完整性。</p>
+</li>
+<li><p>关系运算分为关系代数和关系演算，后者又分为元组演算和域演算。</p>
 </li>
 </ol>
-<p>DDL、DML和DCL组合形成SQL语言，结构化的数据库语言。</p>
-<ol start="13">
-<li>数据库语言与高级语言关系：①一条数据库语言相当于高级语言的一个或多个循环程序。②数据库语言可以嵌入高级语言（宿主语言）中使用。</li>
-<li>系统实现角度看DBMS的功能：①（形式→构造→自动化）DBMS是解析语言并执行的系统；②DBMS为了完成DB管理，在后台运行着一系列的程序，如语言编译器，查询优化（执行引擎），查询实现（基本命令的不同执行算法），数据存取与索引，事务管理，故障恢复，安全性控制，完整性控制，数据字典管理，API，等等。<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/5.%E5%AE%9E%E7%8E%B0%E8%A7%92%E5%BA%A6%E7%9C%8BDBMS%20%E2%85%A0.png" alt=""><img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/5.%E5%AE%9E%E7%8E%B0%E8%A7%92%E5%BA%A6%E7%9C%8BDBMS%20%E2%85%A1.png" alt=""></li>
-<li>DBMS功能小结<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/6.%E5%8A%9F%E8%83%BD%E5%B0%8F%E7%BB%93.png" alt=""></li>
-<li>典型的数据库管理系统（DBMS）：Oracle，DB 2（IBM），Sybase，MS SQL Server，MS Access，MS Foxpro等。</li>
-<li>本讲回顾<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%AE%B2%20%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/7.%E6%9C%AC%E8%AE%B2%E5%9B%9E%E9%A1%BE.png" alt=""></li>
+<p>关系代数是基于集合的运算，操作的对象和结果都是集合，是一次一集合的操作，而非关系型数据操作通常是一次一记录。</p>
+<p>基于关系代数设计的数据库语言（ISBL）：用计算机可识别的符号表征关系代数的运算符号。</p>
+<p>元组演算：基于逻辑的运算。</p>
+<p>基于元组演算设计的数据库语言（Ingres系统的QUEL）：用计算机可识别的符号表征元组演算的运算符号。</p>
+<p>域演算：基于示例的运算。</p>
+<p>基于域演算的数据库语言，如QBE。</p>
+<ol start="5">
+<li>表的严格定义</li>
+</ol>
+<p>首先定义“列”的取值范围——值域D，简称域。</p>
+<p>域是一组相同数据类型的值的集合，集合中元素个数称为域的基数。</p>
+<p>再定义“元组”及所有可能组合成的元组：笛卡儿积。<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/2.%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF.png" alt=""></p>
+<p>元组（d1,d2,……,dn）中每一个值di叫做一个分量。笛卡儿积是由n个域形成的所有可能的n-元组的集合。若Di的基数为mi，则笛卡儿积的基数，即元组个数为m1*m2*……*mn。</p>
+<p>由于笛卡尔积中的所有元组并不是都有意义，故关系是一组域D1,D2,……,Dn的笛卡儿积的子集。</p>
+<p>笛卡尔积中具有某一方面意义的那些元组被称作一个关系。</p>
+<p>为了区分关系的不同列，每列的列名即为属性名。属性名个数称为“度/目”。而列值来自某个域。</p>
+<p>关系的表示：</p>
+<ol start="5">
+<li><p>关系与关系模式：①同一关系模式下，可有很多关系；②关系模式是关系的结构，关系是关系模式再某一时刻的数据；③关系模式是稳定的，而关系是某一时刻的值，随时间可能发生变化。<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/3.%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F.png" alt=""><img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/4.%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA.png" alt=""></p>
+</li>
+<li><p>思维回顾：指出多少列→说清每一列数据可能的取值（值域）→指出一个元组和所有可能的元组（笛卡儿积）→指出关系中的元组（笛卡儿积的子集）</p>
+</li>
+<li><p>关系的特性：①列同质：同一数据类型；②不同列可来自同一个域，每一列为一个属性，先不要不同的属性名。③列位置互换性：区分哪一列靠列名；④区分哪一行靠某一或某几列的值（关键字/键字/码字）；⑤关系以内容区分，而不是属性在关系中位置区分；⑥关系不能有相同元组（集合不能有相同元素），但表不一定满足该性质；⑦属性不可再分，即关系第一范式（复合属性或者多值属性违背第一范式）。</p>
+</li>
+<li><p>候选码/候选键：关系中的一个属性组，其值能唯一标识一个元组，去掉任一值都行。</p>
+<p>候选码可能有多个。最简单，候选码只有一个属性；最极端，所有属性为候选码，即全码。</p>
+</li>
+<li><p>主码/主键：多个候选码选一个，DBMS以主码为线索关系子组。</p>
+</li>
+<li><p>包含在<strong>任何一个</strong>候选码中的属性为主属性，其他属性为非主属性。</p>
+</li>
+<li><p>外码/外键：关系R的一个属性组，他不是R的候选码，但它与另一个关系S的候选码相对应，则称这个属性组为R的外码或外键。</p>
+</li>
+</ol>
+<p>两个关系通常靠外码连接起来。</p>
+<ol start="12">
+<li>关系模型完整性：<ul>
+<li>实体完整性：主码属性值不能为空（不知道或无意义的值）</li>
+<li>参照完整性：外码可以取空，但若取值，只能取外码在另一个表中所代表含义下的可取值。</li>
+<li>用户自定义完整性：用户针对具体应用环境定义的完整性约束条件。如对属性的值域作更严格的约束，年龄在[12,15]之间等。</li>
+</ul>
+</li>
+<li>实体完整性和参照完整性由DBMS系统自动支持。同时提供定义机制，让用户来定义有关的完整性约束条件。当有更新操作发生时，DBMS自动检查是否符合完整性约束。</li>
+<li>本讲回顾<img src="https://github.com/Seventeen1Gx/BlogPicture/raw/master/Notebook/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/5.%E6%9C%AC%E8%AE%B2%E5%9B%9E%E9%A1%BE.png" alt=""></li>
 </ol>
 
       
@@ -438,8 +463,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/25/1031-时钟/" rel="next" title="1031 时钟">
-                <i class="fa fa-chevron-left"></i> 1031 时钟
+              <a href="/2018/04/27/《数据库系统》听课笔记-第二讲-数据库系统的结构抽象与演变/" rel="next" title="《数据库系统》听课笔记 第二讲 数据库系统的结构抽象与演变">
+                <i class="fa fa-chevron-left"></i> 《数据库系统》听课笔记 第二讲 数据库系统的结构抽象与演变
               </a>
             
           </div>
@@ -447,10 +472,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/27/《数据库系统》听课笔记-第二讲-数据库系统的结构抽象与演变/" rel="prev" title="《数据库系统》听课笔记 第二讲 数据库系统的结构抽象与演变">
-                《数据库系统》听课笔记 第二讲 数据库系统的结构抽象与演变 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
