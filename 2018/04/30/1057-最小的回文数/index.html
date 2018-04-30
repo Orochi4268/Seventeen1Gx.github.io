@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法题,字符串," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目描述回文数是从前往后和从后往前得到的数是相同的。现给你一个正整数N，请你找到比N大的最小的那个回文数P。">
+<meta name="keywords" content="算法题,字符串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1057 最小的回文数">
+<meta property="og:url" content="http://yoursite.com/2018/04/30/1057-最小的回文数/index.html">
+<meta property="og:site_name" content="Seventeen&#39;s Blog">
+<meta property="og:description" content="题目描述回文数是从前往后和从后往前得到的数是相同的。现给你一个正整数N，请你找到比N大的最小的那个回文数P。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-30T06:22:23.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1057 最小的回文数">
+<meta name="twitter:description" content="题目描述回文数是从前往后和从后往前得到的数是相同的。现给你一个正整数N，请你找到比N大的最小的那个回文数P。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/30/1057-最小的回文数/"/>
+
+
+
+
+
+  <title>1057 最小的回文数 | Seventeen's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seventeen's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            档案馆
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/30/1057-最小的回文数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seventeen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seventeen's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">1057 最小的回文数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-30T13:20:54+08:00">
+                2018-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CodeUp-cn编程题详解/" itemprop="url" rel="index">
+                    <span itemprop="name">CodeUp.cn编程题详解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>回文数是从前往后和从后往前得到的数是相同的。<br>现给你一个正整数N，请你找到比N大的最小的那个回文数P。</p>
+<a id="more"></a>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入包含多组测试数据。<br>每组输入一个正整数N，N不超过10000位，并且N不包含前导0。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组输入，输出比N大的最小的那个回文数P。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">44</span><br><span class="line">3</span><br><span class="line">175</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">55</span><br><span class="line">4</span><br><span class="line">181</span><br></pre></td></tr></table></figure>
+<h2 id="思路与代码"><a href="#思路与代码" class="headerlink" title="思路与代码"></a>思路与代码</h2><p>由于是大于所给N的最小回文数，所以想到的是对N每次增加1，再判断所得数字是否是回文数，这样碰到的第一个回文数就是所要求的结果，如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">    N++;</span><br><span class="line">    <span class="keyword">if</span> (Judge(N))				<span class="comment">//Judge()函数当N为回文数时返回1，否则返回0</span></span><br><span class="line">    	<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于判断一个整数是否是回文数不如判断一个字符串是否为回文串方便。所以在<code>Judge()</code>中我们可以用<code>itoa()</code>函数将整数转换成相应的字符串再判断。</p>
+<p>但这种方法每增加1判断一次显然太慢。</p>
+<p>另一种思路是先按字符串读入数字。由于回文数的对称性，所以让数字N的右半边往左半边上靠。如3512，从右边开始，2→3，1→5，得3552。部分代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = len - <span class="number">1</span>; i &lt; j; i++, j--)</span><br><span class="line">    str[j] = str[i];</span><br><span class="line"><span class="comment">//这样得到的str就是将左半截镜面投射到右半截的结果，这是一个回文数</span></span><br></pre></td></tr></table></figure>
+<p>但这种方法所得结果并不一定是大于N的最小回文数。如3586→3553（变小了），333→333（无变化）。</p>
+<p>这就需要记录当<code>str[j] = str[i]</code>操作时，该数是变小了还是变大还是不变。由于左半边不变，所以要根据右半边的变化情况判断。由数学知识可知，越靠近中间的变化所占比重越大。如3451第一次变化，3453比3451是变大了，但下一次变化3443比3451是变小了。于是上面的代码需要改变如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line"><span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = len - <span class="number">1</span>; i &lt; j; i++, j--) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s[i] &lt; s[j])</span><br><span class="line">		flag = <span class="number">1</span>;                 </span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (s[i] &gt; s[j])</span><br><span class="line">		flag = <span class="number">0</span>;</span><br><span class="line">    str[j] = str[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//flag初值为1，所以循环结束，flag = 1表示新得回文串较原串变小或不变，flag = 0表示变大了</span></span><br></pre></td></tr></table></figure>
+<p>然后由处理过程可知，若是变大的情况，由于处理的是右半边低位部分，所以得到这个的回文串代表的就是大于N的最小回文数。</p>
+<p>当不变或相等我们就要进一步处理，而得到的回文串首先是一个回文数，下一个大于他的最小回文串就是我们要求的结果。因为最小，所以只要最中间的一位（奇数长）或两位（偶数长）加一即可，因为这样增长最小，而其他的对称两位加一都比这个大。如3553→3663，而不是4554，353→363，而不是454。</p>
+<p>而<strong>最最关键的是</strong>，这里涉及某一位加一，那么就可能出现9+1而进位的情况。如3993→4004，9999→10001。</p>
+<p>这是只要把当前的位置0，往外移动一位，再加一即可，如果又有进位，则继续当前位，置0，再往外移动一位，再加一，直到已经到两端，若两端还是有进位，那么就位数加一，结果为1000……0001形式。</p>
+<p>注意对于字符<code>&#39;9&#39;+1</code>并不会自动帮你进位，要自己判断。关键代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> j = len / <span class="number">2</span>, i;</span><br><span class="line"><span class="keyword">if</span> (len % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">	i = j<span class="number">-1</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	i = j;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i == j) &#123;				<span class="comment">//当前对称位置在正中心，只要处理一位</span></span><br><span class="line">        str[i]++;</span><br><span class="line">        <span class="keyword">if</span> (str[i] &lt;= <span class="string">'9'</span>)		<span class="comment">//无进位</span></span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;					<span class="comment">//有进位，当前位，置零，再向外移动</span></span><br><span class="line">            str[i] = <span class="string">'0'</span>;</span><br><span class="line">            i--;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;					<span class="comment">//当前对称位置在两侧，有两位需要处理</span></span><br><span class="line">        str[i]++;</span><br><span class="line">        str[j]++;</span><br><span class="line">        <span class="keyword">if</span> (str[i] &lt;= <span class="string">'9'</span>)</span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            str[i] = str[j] = <span class="string">'0'</span>;</span><br><span class="line">            i--;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span>) &#123;				<span class="comment">//增加一位的情况</span></span><br><span class="line">    	str[<span class="number">0</span>] = <span class="string">'1'</span>;</span><br><span class="line">    	str[j] = <span class="string">'1'</span>;</span><br><span class="line">    	str[j+<span class="number">1</span>] = <span class="string">'\0'</span>;</span><br><span class="line">    	<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完整代码如下（变量名可能不同，但思路一样）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">此题特殊在  3993  9999 这样的数 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXSIZE = <span class="number">10000</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s[MAXSIZE+<span class="number">2</span>];			<span class="comment">//+2是考虑到末尾\0和结果进位的情况 </span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> ( gets(s) ) &#123;</span><br><span class="line">		<span class="keyword">int</span> len = <span class="built_in">strlen</span>(s);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> i, j;</span><br><span class="line">		<span class="comment">//将左半边镜面投射到右半边</span></span><br><span class="line">		<span class="comment">//flag记录所得回文数与原数的大小变化情况</span></span><br><span class="line">		<span class="comment">//1表示小于或等于，0表示大于 </span></span><br><span class="line">		<span class="keyword">int</span> flag = <span class="number">1</span>; </span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">0</span>, j=len<span class="number">-1</span>; i&lt;j; i++, j--) &#123;</span><br><span class="line">			<span class="keyword">if</span> (s[i] &lt; s[j])</span><br><span class="line">				flag = <span class="number">1</span>;                 </span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (s[i] &gt; s[j])</span><br><span class="line">				flag = <span class="number">0</span>;</span><br><span class="line">			s[j] = s[i];</span><br><span class="line">		&#125; </span><br><span class="line">		</span><br><span class="line">		<span class="comment">//标记是否增加一位 </span></span><br><span class="line">		<span class="keyword">int</span> flag2 = <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//flag为1，说明新得回文数小于或等于原数 </span></span><br><span class="line">		<span class="keyword">if</span> ( flag ) &#123;           </span><br><span class="line">			<span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (i == j) &#123;			<span class="comment">//只需处理一位 </span></span><br><span class="line">					s[i]++;</span><br><span class="line">					<span class="keyword">if</span> ( s[i] &lt;= <span class="string">'9'</span> )	<span class="comment">//无进位 </span></span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					s[i] = <span class="string">'0'</span>;</span><br><span class="line">					i++;</span><br><span class="line">					j--;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;				<span class="comment">//需要处理两位 </span></span><br><span class="line">					s[i]++;</span><br><span class="line">					s[j]++;</span><br><span class="line">					<span class="keyword">if</span> ( s[i] &lt;= <span class="string">'9'</span> )	<span class="comment">//无进位 </span></span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					s[i] = s[j] = <span class="string">'0'</span>;</span><br><span class="line">					i++;</span><br><span class="line">					j--;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (j &lt; <span class="number">0</span> ) &#123;			<span class="comment">//增加一位 </span></span><br><span class="line">					flag2 = <span class="number">1</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> ( flag2 ) &#123;</span><br><span class="line">			s[<span class="number">0</span>] = s[len] = <span class="string">'1'</span>;</span><br><span class="line">			s[len+<span class="number">1</span>] = <span class="string">'\0'</span>;</span><br><span class="line">			<span class="keyword">for</span> (i=<span class="number">1</span>, j=len<span class="number">-1</span>; i&lt;=j; i++, j--)</span><br><span class="line">				s[i] = s[j] = <span class="string">'0'</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">puts</span>(s);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>代码文件下载请戳<a href="https://github.com/Seventeen1Gx/CodeUp/tree/master/1008-1033%20%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%8B%9F" target="_blank" rel="noopener">这里</a>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法题/" rel="tag"># 算法题</a>
+          
+            <a href="/tags/字符串/" rel="tag"># 字符串</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/29/1054-统计回文子串/" rel="next" title="1054 统计回文子串">
+                <i class="fa fa-chevron-left"></i> 1054 统计回文子串
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Seventeen" />
+            
+              <p class="site-author-name" itemprop="name">Seventeen</p>
+              <p class="site-description motion-element" itemprop="description">From Zero to Hero</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Seventeen1Gx" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:seventeen1gx@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入"><span class="nav-number">2.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出"><span class="nav-number">3.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输入"><span class="nav-number">4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输出"><span class="nav-number">5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路与代码"><span class="nav-number">6.</span> <span class="nav-text">思路与代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Seventeen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"bottom":-10,"display":{"position":"right","width":100,"height":200},"mobile":{"show":false},"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</html>
